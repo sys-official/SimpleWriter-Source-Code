@@ -1,0 +1,145 @@
+Public Class Form1
+
+    Private Sub NeuToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuToolStripButton.Click
+        RichTextBox1.Clear()
+    End Sub
+
+    Private Sub ÖffnenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ÖffnenToolStripButton.Click
+        Try
+            Dim dlg As OpenFileDialog = New OpenFileDialog
+            dlg.Title = "Datei Öffnen"
+            dlg.Filter = "Text Dateien (*.txt)|*.txt|Rich Text Format (*.rtf)|*.rtf|HTML Webseiten (*.html)|*.html|Alle Dateien (*.*)|*.*"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.LoadFile(dlg.FileName)
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub SpeichernToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SpeichernToolStripButton.Click
+        Try
+            Dim dlg As SaveFileDialog = New SaveFileDialog
+            dlg.Title = "Datei Speichern"
+            dlg.Filter = "Text Dateien (*.txt)|*.txt|Rich Text Format (*.rtf)|*.rtf|HTML Webseiten (*.html)|*.html|Alle Dateien (*.*)|*.*"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.SaveFile(dlg.FileName, RichTextBoxStreamType.RichText)
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub AusschneidenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AusschneidenToolStripButton.Click
+        RichTextBox1.Cut()
+    End Sub
+
+    Private Sub KopierenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KopierenToolStripButton.Click
+        RichTextBox1.Copy()
+    End Sub
+
+    Private Sub EinfügenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EinfügenToolStripButton.Click
+        RichTextBox1.Paste()
+    End Sub
+
+    Private Sub SchließenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SchließenToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+
+    Private Sub ÖffnenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ÖffnenToolStripMenuItem.Click
+        Try
+            Dim dlg As OpenFileDialog = New OpenFileDialog
+            dlg.Title = "Datei Öffnen"
+            dlg.Filter = "Text Dateien (*.txt)|*.txt|Rich Text Format (*.rtf)|*.rtf|HTML Webseiten (*.html)|*.html|Alle Dateien (*.*)|*.*"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.LoadFile(dlg.FileName)
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub SpeichernToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SpeichernToolStripMenuItem.Click
+        Try
+            Dim dlg As SaveFileDialog = New SaveFileDialog
+            dlg.Title = "Datei Speichern"
+            dlg.Filter = "Text Dateien (*.txt)|*.txt|Rich Text Format (*.rtf)|*.rtf|HTML Webseiten (*.html)|*.html|Alle Dateien (*.*)|*.*"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.SaveFile(dlg.FileName, RichTextBoxStreamType.RichText)
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub KopierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KopierenToolStripMenuItem.Click
+        RichTextBox1.Copy()
+    End Sub
+
+    Private Sub EinfügenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EinfügenToolStripMenuItem.Click
+        RichTextBox1.Paste()
+    End Sub
+
+    Private Sub AusschneidenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AusschneidenToolStripMenuItem.Click
+        RichTextBox1.Cut()
+    End Sub
+
+    Private Sub RückgängigToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RückgängigToolStripMenuItem.Click
+        RichTextBox1.Undo()
+    End Sub
+
+    Private Sub WiederherstellenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles WiederherstellenToolStripMenuItem.Click
+        RichTextBox1.Redo()
+    End Sub
+
+    Private Sub SchriftfarbeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SchriftfarbeToolStripMenuItem.Click
+        Try
+            Dim dlg As ColorDialog = New ColorDialog
+            dlg.Color = RichTextBox1.ForeColor
+            If dlg.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.ForeColor = dlg.Color
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub SchriftartToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SchriftartToolStripMenuItem.Click
+        Try
+            Dim dlg As FontDialog = New FontDialog
+            dlg.Font = RichTextBox1.Font
+            If dlg.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.Font = dlg.Font
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub HintergrundfarbeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HintergrundfarbeToolStripMenuItem.Click
+        Try
+            Dim dlg As ColorDialog = New ColorDialog
+            dlg.Color = RichTextBox1.BackColor
+            If dlg.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                RichTextBox1.BackColor = dlg.Color
+            End If
+        Catch ex As Exception : End Try
+    End Sub
+
+    Private Sub DruckenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DruckenToolStripButton.Click
+        PrintDialog1.Document = PrintDocument1
+        PrintDialog1.PrinterSettings = PrintDocument1.PrinterSettings
+        PrintDialog1.AllowSomePages = True
+        If PrintDialog1.ShowDialog = DialogResult.OK Then
+            PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
+            PrintDocument1.Print()
+        End If
+    End Sub
+
+    Private Sub DruckenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DruckenToolStripMenuItem.Click
+        PrintDialog1.Document = PrintDocument1
+        PrintDialog1.PrinterSettings = PrintDocument1.PrinterSettings
+        PrintDialog1.AllowSomePages = True
+        If PrintDialog1.ShowDialog = DialogResult.OK Then
+            PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
+            PrintDocument1.Print()
+        End If
+    End Sub
+
+    Private Sub AllesAuasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AllesAuasToolStripMenuItem.Click
+        RichTextBox1.SelectAll()
+    End Sub
+
+    Private Sub ExtrasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExtrasToolStripMenuItem.Click
+        Form2.Show()
+    End Sub
+
+End Class
